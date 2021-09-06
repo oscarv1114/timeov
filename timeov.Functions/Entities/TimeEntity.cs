@@ -7,11 +7,11 @@ namespace timeov.Functions.Entities
 {
     public class TimeEntity : TableEntity
     {
-        public int id { get; set; }
+        public int employeeId { get; set; }
 
         public DateTime dateTime { get; set; }
 
-        public byte type { get; set; }
+        public int type { get; set; }
 
         public bool isConsolidated { get; set; }
 

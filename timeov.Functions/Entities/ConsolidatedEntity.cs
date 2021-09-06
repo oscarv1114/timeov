@@ -9,7 +9,7 @@ namespace timeov.Functions.Entities
     {
         public int employeeId { get; set; }
 
-        public DateTime dateTime { get; set; }
+        public DateTime date { get; set; }
 
         public int timeWorked { get; set; }
     }
