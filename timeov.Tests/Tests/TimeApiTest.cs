@@ -2,11 +2,7 @@
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage.Table;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using timeov.Common.Models;
 using timeov.Functions.Entities;
 using timeov.Functions.Functions;
@@ -17,7 +13,7 @@ namespace timeov.Tests.Tests
 {
     public class TimeApiTest
     {
-        private static ILogger logger = TestFactory.CreateLogger();
+        private static readonly ILogger logger = TestFactory.CreateLogger();
 
         [Fact]
         public async void CreateTime_Should_return_200()
@@ -66,14 +62,6 @@ namespace timeov.Tests.Tests
 
             // Act
             IActionResult response = await TimeAPI.DeleteTime(request, timeEntity, mockTimes, timeId.ToString(), logger);
-            /*
-                [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "time/{id}")] HttpRequest req,     request
-                [Table("time", "TIME", "{id}", Connection = "AzureWebJobsStorage")] TimeEntity timeEntity,  
-                [Table("time", Connection = "AzureWebJobsStorage")] CloudTable timeTable,   mockTimes
-                string id,  timeId.ToString()
-                ILogger log     logger
-             */
-            //.UpdateTime(request, mockTimes, timeId.ToString(), logger);
 
             // Assert
             OkObjectResult result = (OkObjectResult)response;
@@ -95,7 +83,7 @@ namespace timeov.Tests.Tests
             //DefaultHttpRequest request = TestFactory.CreateHttpRequest(timeId);
 
             // Act
-            IActionResult response = await TimeAPI.GetAllTimes(request, mockTimes, logger); 
+            IActionResult response = await TimeAPI.GetAllTimes(request, mockTimes, logger);
 
             // Assert
             OkObjectResult result = (OkObjectResult)response;
@@ -114,7 +102,7 @@ namespace timeov.Tests.Tests
 
             // Act
             IActionResult response = TimeAPI.GetTimeById(request, timeEntity, timeId.ToString(), logger);
-            
+
             // Assert
             OkObjectResult result = (OkObjectResult)response;
             Assert.Equal(StatusCodes.Status200OK, result.StatusCode);

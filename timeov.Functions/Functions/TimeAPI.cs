@@ -110,7 +110,7 @@ namespace timeov.Functions.Functions
             //update
             TimeEntity timeEntity = (TimeEntity)findResult.Result;
 
-            if (!string.IsNullOrEmpty(time.employeeId.ToString()) 
+            if (!string.IsNullOrEmpty(time.employeeId.ToString())
                 || !string.IsNullOrEmpty(time.dateTime.ToString())
                 || !string.IsNullOrEmpty(time.type.ToString()))
             {
